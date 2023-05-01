@@ -133,7 +133,7 @@ class HBNBCommand(cmd.Cmd):
                     kwargs[k] = v.strip('"').replace('_', ' ')
                 else:
                     kwargs[k] = eval(v)
-            except:Exception:
+            except: Exception:
                 pass
         new_instance = HBNBCommand.classes[args[0]](**kwargs)
         storage.save()
