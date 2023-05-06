@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-"""script that generates a .tgz archive from the contents of the web_static folder"""
-
+"""Generates a .tgz archive from the contents of web_static using fabric"""
 import os
 from datetime import datetime
 from fabric.api import local
 
+
 def do_pack():
-"""Creates an archive from the content of a folder"""
+    """Create a tar gzipped archive of the directory web_static"""
     dt = datetime.now()
     filename = "versions/web_static_{}{}{}{}{}{}.tgz".format(dt.year,
                                                              dt.month,
