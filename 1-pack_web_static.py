@@ -6,6 +6,7 @@ from datetime import datetime
 from fabric.api import local
 
 def do_pack():
+"""Creates an archive from the content of a folder"""
     dt = datetime.now()
     filename = "versions/web_static_{}{}{}{}{}{}.tgz".format(dt.year,
                                                              dt.month,
