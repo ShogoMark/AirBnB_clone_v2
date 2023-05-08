@@ -7,16 +7,18 @@ from fabric.api import local
 
 def do_pack():
     """Create a tar gzipped archive of the directory web_static"""
-    dt = datetime.now()
-    filename = "versions/web_static_{}{}{}{}{}{}.tgz".format(dt.year,
+    try:
+    	dt = datetime.now()
+    	filename = "versions/web_static_{}{}{}{}{}{}.tgz".format(dt.year,
                                                              dt.month,
                                                              dt.day,
                                                              dt.hour,
                                                              dt.minute,
                                                              dt.second)
-    if os.path.isdir("./versions") is False:
-        if local('mkdir versions').failed is True:
-            return None
-    if local("tar -cvf {} -C web_static .".format(filename)).failed is True:
+    	if not os.path.isdir("./versions"):
+    	    local('mkdir versions')
+
+    	local("tar -cvzf {} web_static".format(filename))
+    	return filename
+    except Exception:
         return None
-    return filename
